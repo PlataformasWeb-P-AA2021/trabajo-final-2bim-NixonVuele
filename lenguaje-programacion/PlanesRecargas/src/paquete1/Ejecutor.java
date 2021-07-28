@@ -22,27 +22,41 @@ public class Ejecutor {
         String ciudad = "";
         String marca = "";
         String modelo = "";
-        double minNacionales = 0;
-        double minInternacionales = 0;
-        double gigas = 0;
-        String seguir = "Si";
+        double minNacionales;
+        double minInternacionales;
+        double gigas;
+        String seguir;
         int numero = 0;
         do {
-            System.out.print("Menu de Planes de Pago Mensual\n\n"
+            System.out.print("Menú de Planes de Pago Mensual\n\n"
                     + "1. Plan Postpago Minutos\n"
                     + "2. Plan Postpago Megas\n"
-                    + "3. Plan Postpago MinutosMegas\n"
-                    + "4. Plan Postpago MinutosMegas economico\n"
+                    + "3. Plan Postpago Minutos Megas\n"
+                    + "4. Plan Postpago Minutos Megas economico\n"
                     + "5. Mostrar Registro\n"
-                    + "Escoja una opcion: ");
+                    + "Escoja una opción: ");
             int option = teclado.nextInt();
+
+            if (option != 1 & option != 2 & option != 3 & option != 4
+                    & option != 5) {
+                boolean verdadero = false;
+                while (verdadero == false) {
+                    System.out.print("Por favor seleccione una opción valida "
+                            + "dentro de nuestro menú: ");
+                    option = teclado.nextInt();
+                    if (option == 1 || option == 2 || option == 3 || option == 4
+                            || option == 5) {
+                        verdadero = true;
+                    }
+                }
+            }
             if (option < 5) {
                 teclado.nextLine();
                 System.out.print("Ingrese su nombre: ");
                 name = teclado.nextLine();
                 System.out.print("Ingrese su apellido: ");
                 apellido = teclado.nextLine();
-                System.out.print("Ingrese su identificacion: ");
+                System.out.print("Ingrese su identificación: ");
                 cedula = teclado.nextLine();
                 System.out.print("Ingrese su ciudad de residencia: ");
                 ciudad = teclado.nextLine();
@@ -50,7 +64,7 @@ public class Ejecutor {
                 marca = teclado.nextLine();
                 System.out.print("Ingrese el modelo de su celular: ");
                 modelo = teclado.nextLine();
-                System.out.print("Ingrese su numero de celular: ");
+                System.out.print("Ingrese su número  de celular: ");
                 numero = teclado.nextInt();
                 teclado.nextLine();
 
@@ -58,48 +72,42 @@ public class Ejecutor {
             Persona p1 = new Persona(name, apellido, cedula);
             switch (option) {
 
-                case 1: {
-                    System.out.print("Ingrese la cantidad de minutos en llamadas"
-                            + " nacionales: ");
+                case 1 -> {
+                    System.out.print("Ingrese la cantidad de minutos en "
+                            + "llamadas nacionales: ");
                     minNacionales = teclado.nextDouble();
-                    System.out.print("Ingrese la cantidad de minutos en llamadas"
-                            + " internacionacionales: ");
+                    System.out.print("Ingrese el costo de minutos en llamadas"
+                            + " nacionales: ");
+                    double costoNacionales = teclado.nextDouble();
+                    System.out.print("Ingrese la cantidad de minutos en "
+                            + "llamadas internacionales: ");
                     minInternacionales = teclado.nextDouble();
-                    PlanPostPagoMinutos plan1 = new PlanPostPagoMinutos(p1, ciudad,
-                            marca, modelo, numero, minNacionales, 0.15,
-                            minInternacionales, 0.40);
+                    System.out.print("Ingrese el costo de minutos en llamadas"
+                            + " internacionales: ");
+                    double costoInternacional = teclado.nextDouble();
+
+                    PlanPostPagoMinutos plan1 = new PlanPostPagoMinutos(p1,
+                            ciudad, marca, modelo, numero, minNacionales,
+                            costoNacionales, minInternacionales,
+                            costoInternacional);
                     planes.add(plan1);
-                    break;
                 }
 
-                case 2: {
+                case 2 -> {
                     System.out.print("Ingrese su consumo de megas en este "
                             + "mes: ");
                     gigas = teclado.nextDouble();
+                    System.out.print("Ingrese el costo por Giga: ");
+                    double costoGigas = teclado.nextDouble();
+                    System.out.print("Ingrese la tarifa base: ");
+                    double tarifaBase = teclado.nextDouble();
                     PlanPostPagoMegas plan2 = new PlanPostPagoMegas(p1, ciudad,
-                            marca, modelo, numero, 2.50, 6.00);
+                            marca, modelo, numero, costoGigas, tarifaBase);
                     plan2.setMegasEnGb(gigas);
                     planes.add(plan2);
-                    break;
                 }
 
-                case 3: {
-                    System.out.print("Ingrese la cantidad de minutos usados:");
-                    int minutos = teclado.nextInt();
-                    System.out.print("Ingrese el costo por minuto:");
-                    double costoMinutos = teclado.nextDouble();
-                    System.out.print("Ingrese su consumo de megas en este "
-                            + "mes: ");
-                    gigas = teclado.nextDouble();
-                    PlanPostPagoMinutosMegas plan3
-                            = new PlanPostPagoMinutosMegas(minutos, costoMinutos,
-                                    gigas, 0.20, p1, ciudad, marca, modelo, numero);
-                    plan3.setMegasEnGigas(gigas);
-                    planes.add(plan3);
-                    break;
-                }
-
-                case 4: {
+                case 3 -> {
                     System.out.print("Ingrese la cantidad de minutos usados: ");
                     int minutos = teclado.nextInt();
                     System.out.print("Ingrese el costo por minuto: ");
@@ -107,24 +115,44 @@ public class Ejecutor {
                     System.out.print("Ingrese su consumo de megas en este "
                             + "mes: ");
                     gigas = teclado.nextDouble();
+                    System.out.print("Ingrese el costo por Giga: ");
+                    double costoGigas = teclado.nextDouble();
+                    PlanPostPagoMinutosMegas plan3
+                            = new PlanPostPagoMinutosMegas(minutos,
+                                    costoMinutos, gigas, costoGigas, p1, ciudad,
+                                    marca, modelo, numero);
+                    plan3.setMegasEnGigas(gigas);
+                    planes.add(plan3);
+                }
+
+                case 4 -> {
+                    System.out.print("Ingrese la cantidad de minutos usados: ");
+                    int minutos = teclado.nextInt();
+                    System.out.print("Ingrese el costo por minuto: ");
+                    double costoMinutos = teclado.nextDouble();
+                    System.out.print("Ingrese su consumo de megas en este "
+                            + "mes: ");
+                    gigas = teclado.nextDouble();
+                    System.out.print("Ingrese el costo por Giga: ");
+                    double costoGigas = teclado.nextDouble();
+                    System.out.print("Ingrese el porcentaje de descuento a "
+                            + "realizar: ");
+                    int descuento = teclado.nextInt();
+
                     PlanPostPagoMinutosMegasEconomico plan4
                             = new PlanPostPagoMinutosMegasEconomico(minutos,
-                                    costoMinutos, gigas, 0.20, 12, p1, ciudad,
-                                    marca, modelo, numero);
+                                    costoMinutos, gigas, costoGigas, descuento,
+                                    p1, ciudad, marca, modelo, numero);
                     plan4.setMegasEnGigas(gigas);
                     planes.add(plan4);
-                    break;
 
                 }
-                case 5: {
+                case 5 -> {
                     LecturaArchivoSecuencial lectura
                             = new LecturaArchivoSecuencial(nombreArchivo);
                     lectura.setListaPlanes();
                     System.out.println(lectura);
-
-                    break;
                 }
-
             }
             EscrituraArchivoSecuencial archivo
                     = new EscrituraArchivoSecuencial(nombreArchivo);
@@ -137,10 +165,11 @@ public class Ejecutor {
             }
             archivo.cerrarArchivo();
             teclado.nextLine();
-            System.out.println("\nSi desea continuar presione Si caso contrario"
+            System.out.println("\nSi desea continuar escriba Si caso contrario"
                     + " No");
             seguir = teclado.nextLine();
-        } while (seguir.equals("Si"));
+            seguir = seguir.toLowerCase();
+        } while (seguir.equals("si"));
 
     }//Fin del Metodo Main
 

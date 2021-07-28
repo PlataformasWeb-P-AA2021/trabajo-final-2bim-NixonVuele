@@ -81,18 +81,19 @@ public class PlanPostPagoMinutosMegasEconomico extends PlanCelular implements Se
     @Override
     public String toString() {
         String cadena = String.format("%s"
-                + "Megas en Gigas: %.2f\n"
-                + "Costo por giga: %.2f\n"
+                + "Megas en Gigas: %.2f Gigas\n"
+                + "Costo por giga: %.2f$\n"
                 + "Minutos: %d\n"
-                + "Costo por minuto: %.2f\n"
-                + "Porcentaje de descuento: %d\n"
-                + "Pago Mensual: %.2f\n",
+                + "Costo por minuto: %.2f$\n"
+                + "Porcentaje de descuento: %d\n%s"
+                + "Pago Mensual: %.2f$\n",
                 super.toString(),
                 megasEnGigas,
                 costoGiga,
                 minutos,
                 costoMinutos,
                 porcentajeDescuento,
+                "%",
                 getPagoMensual());
         return cadena;
     }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import paquete2.Persona;
 import paquete2.PlanCelular;
 
-public class PlanPostPagoMinutos extends PlanCelular implements Serializable{
+public class PlanPostPagoMinutos extends PlanCelular implements Serializable {
 
     private double minNacionales;
     private double costoMinNacional;
@@ -23,8 +23,8 @@ public class PlanPostPagoMinutos extends PlanCelular implements Serializable{
 
     @Override
     public void setPagoMensual() {
-        pagoMensual = (costoMinInternacional*minInternacional)+ 
-                (costoMinNacional*minNacionales);
+        pagoMensual = (costoMinInternacional * minInternacional)
+                + (costoMinNacional * minNacionales);
     }
 
     public double getMinNacionales() {
@@ -62,11 +62,11 @@ public class PlanPostPagoMinutos extends PlanCelular implements Serializable{
     @Override
     public String toString() {
         String cadena = String.format("%s"
-                + "Minutos nacionales: %.2f\n"
-                + "Costo Minuto Nacional: %.2f\n"
-                + "Minutos internacionales: %.2f\n"
-                + "Costo Minuto Internacional: %.2f\n"
-                + "Pago mensual: %.2f",
+                + "Minutos nacionales: %.2f minutos\n"
+                + "Costo Minuto Nacional: %.2f$\n"
+                + "Minutos internacionales: %.2f minutos\n"
+                + "Costo Minuto Internacional: %.2f$\n"
+                + "Pago mensual: %.2f$\n",
                 super.toString(),
                 minNacionales,
                 costoMinNacional,

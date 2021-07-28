@@ -4,7 +4,7 @@ import java.io.Serializable;
 import paquete2.Persona;
 import paquete2.PlanCelular;
 
-public class PlanPostPagoMegas extends PlanCelular implements Serializable{
+public class PlanPostPagoMegas extends PlanCelular implements Serializable {
 
     private double megasEnGb;
     private double costoGb;
@@ -49,10 +49,10 @@ public class PlanPostPagoMegas extends PlanCelular implements Serializable{
     @Override
     public String toString() {
         String cadena = String.format("%s"
-                + "Megas en Gigas: %.2f\n"
-                + "Costo por giga: %.2f\n"
-                + "Tarifa Base: %.2f\n"
-                + "Pago Mensual: %.2f\n",
+                + "Megas en Gigas: %.2f Gigas\n"
+                + "Costo por giga: %.2f$\n"
+                + "Tarifa Base: %.2f$\n"
+                + "Pago Mensual: %.2f$\n",
                 super.toString(),
                 megasEnGb,
                 costoGb,
